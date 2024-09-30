@@ -16,7 +16,7 @@ loop:
 
 	movw %si, %ax		# Salva SI em AX (dividendo)
 	movw $10, %cx		# CX = 10 (divisor)
-	div %cx				# Divide AX por CX; quociente em AX, resto em DX
+	div %cx				# Divide AX por CX (quociente em AX, resto em DX)
 	movw %ax, %si		# Atualiza SI com o quociente
 
 	movw %di, %ax		# Restaura AX de DI após a divisão
@@ -24,12 +24,20 @@ loop:
 	jmp loop			# Recomeça o loop
 
 print:
-	movb $'x', %al
-	movb $0x0e, %ah
-	int $0x10
+	movw %di, %ax		# Salva AX em DI
+	div %si				# Divide AX por SI (quociente em AX, resto em DX)
+
+	# Faltando lógica de print
+
+	movw %dx, %ax		# AX passa a se tornar o resto da divisão
+						# AX / 10000 => AX : 5 && DX : 4321
+						# AX / 1000 => AX : 4 && DX : 321
+						# AX / 100 => AX : 3 && DX : 21
+						# AX / 10 => AX : 2 && DX : 1
+						# AX / 1 => AX : 1 && DX : 
 	
 	ret
 
 loop_fim:
-	hlt
+	hlt					# Pausa de sistema
 	jmp loop_fim
