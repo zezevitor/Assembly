@@ -24,17 +24,9 @@ loop:
 	jmp loop			# Recomeça o loop
 
 print:
-	movw %di, %ax		# Salva AX em DI
-	div %si				# Divide AX por SI (quociente em AX, resto em DX)
-
-	# Faltando lógica de print
-
-	movw %dx, %ax		# AX passa a se tornar o resto da divisão
-						# AX / 10000 => AX : 5 && DX : 4321
-						# AX / 1000 => AX : 4 && DX : 321
-						# AX / 100 => AX : 3 && DX : 21
-						# AX / 10 => AX : 2 && DX : 1
-						# AX / 1 => AX : 1 && DX : 
+	movb $'x', %al
+	movb $0x0e, %ah
+	int $0x10
 	
 	ret
 
