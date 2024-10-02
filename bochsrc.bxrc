@@ -1,8 +1,0 @@
-megs: 32
-romimage: file=/home/andre/usr/share/bochs/BIOS-bochs-latest
-vgaromimage: file=/home/andre/usr/share/bochs/VGABIOS-lgpl-latest.bin
-boot: a
-floppya: 1_44="floppy.img", status=inserted
-log: bochsout.txt
-mouse: enabled=0
-
